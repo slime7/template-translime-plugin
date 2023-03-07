@@ -1,21 +1,21 @@
-import pkg from '../package.json';
+const pkg = require('../package.json');
 
 const id = pkg.name;
 
 // 加载时执行
-export const pluginDidLoad = () => {
+const pluginDidLoad = () => {
   console.log('plugin loaded');
   const setting = global.store.get(`plugin.${id}.settings`, {});
   console.log('settings: ', setting);
 };
 
 // 禁用时执行
-export const pluginWillUnload = () => {
+const pluginWillUnload = () => {
   console.log('plugin unloaded');
 };
 
 // 插件设置表单
-export const settingMenu = [
+const settingMenu = [
   // 文本框
   {
     key: 'input-1', // 设置储存到配置文件的字段，没有这个字段则取 name 的值
@@ -71,7 +71,7 @@ export const settingMenu = [
 
 // 插件上下文菜单
 // https://www.electronjs.org/zh/docs/latest/api/menu-item
-export const pluginMenu = [
+const pluginMenu = [
   {
     id: `${id}-custom-menu`,
     label: 'custom menu',
@@ -82,7 +82,7 @@ export const pluginMenu = [
 ];
 
 // ipc 定义
-export const ipcHandlers = [
+const ipcHandlers = [
   {
     type: 'test-ipc', // 调用时需加上`@${id}`，此处为 'test-ipc@translime-plugin-my-plugin'
     handler: ({ sendToClient }) => (arg1, arg2) => {
@@ -91,3 +91,11 @@ export const ipcHandlers = [
     },
   },
 ];
+
+module.exports = {
+  pluginDidLoad,
+  pluginWillUnload,
+  settingMenu,
+  pluginMenu,
+  ipcHandlers,
+};
