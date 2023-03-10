@@ -67,7 +67,7 @@ yarn build
 插件界面组件模式，和`windowUrl`最多选其一。
 
 ```
-"ui": "dist/ui.umd.js"
+"ui": "dist/ui.esm.js"
 ```
 
 ### windowUrl
