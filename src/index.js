@@ -1,10 +1,11 @@
-const pkg = require('../package.json');
+import answer from 'the-answer';
+import pkg from '../package.json';
 
 const id = pkg.name;
 
 // 加载时执行
 const pluginDidLoad = () => {
-  console.log('plugin loaded');
+  console.log('plugin loaded', answer);
   const setting = global.store.get(`plugin.${id}.settings`, {});
   console.log('settings: ', setting);
 };
