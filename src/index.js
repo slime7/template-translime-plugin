@@ -2,11 +2,12 @@ import answer from 'the-answer';
 import pkg from '../package.json';
 
 const id = pkg.name;
+const config = global.mainStore.config || global.store;
 
 // 加载时执行
 const pluginDidLoad = () => {
   console.log('plugin loaded', answer);
-  const setting = global.store.get(`plugin.${id}.settings`, {});
+  const setting = config.get(`plugin.${id}.settings`, {});
   console.log('settings: ', setting);
 };
 
@@ -115,7 +116,7 @@ const ipcHandlers = [
   },
 ];
 
-module.exports = {
+export default {
   pluginDidLoad,
   pluginWillUnload,
   pluginSettingSaved,
